@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import React, { useState } from "react";
 
@@ -58,7 +58,8 @@ export default function App() {
                     {/*"tooltip" needed for Android, otherwise Button is not clickable*/}
                     <Callout>
                         <Text>Tramhaltestelle</Text>
-                        <Text style={{height: 100}}><Image style={{height: 50}} source={require("./assets/Logo_Muenchen_Quadrat.png")} resizeMode={"contain"}/></Text>
+                        <Button title={"press me"}/>
+                        {/*<Text style={{height: 100}}><Image style={{height: 50}} source={require("./assets/Logo_Muenchen_Quadrat.png")} resizeMode={"contain"}/></Text>*/}
                     </Callout>
                 </Marker>
             </MapView>
