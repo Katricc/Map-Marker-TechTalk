@@ -1,0 +1,55 @@
+import { StyleSheet, View, Text, ImageSourcePropType, Image, Button } from "react-native";
+import React from "react";
+
+type InfoCardProps = {
+    image: ImageSourcePropType,
+    title: string,
+    description: string,
+    showButton?: boolean
+};
+
+const InfoCard = ({ image, title, description, showButton }: InfoCardProps) => {
+    return (
+        <View style={styles.container}>
+            <Image style={styles.image} source={image} />
+            <View style={styles.descContainer}>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.description}>{description}</Text>
+                {showButton && <Button title={"ONLINE BESTELLEN"}></Button>}
+            </View>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        maxHeight: 400,
+        flexDirection: 'column',
+        position: 'absolute',
+        bottom: 35,
+        left: 35,
+        right: 35,
+        backgroundColor: 'white',
+        borderRadius: 15,
+        overflow: 'hidden',
+    },
+    image: {
+        resizeMode: "cover",
+        width: '100%',
+        height: 200,
+    },
+    descContainer: {
+        padding: 15,
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: "bold",
+    },
+    description: {
+        marginTop: 10,
+        marginBottom: 10,
+        color: 'gray',
+    }
+});
+
+export default InfoCard;
