@@ -41,14 +41,14 @@ export default function App() {
             <MapView
                 style={styles.map}
                 initialRegion={initialRegion}
-                onPress={() => { setKartoffelSelected(false); setHmSelected(false);} }
             >
                 {/*normaler marker mit HM Logo*/}
                 <Marker
                     coordinate={coordinates.hmRoterWuerfel} image={require("./assets/Logo_Muenchen_Quadrat.png")}
                     title="Hello2"
                     description="Desc"
-                    onPress={() => setHmSelected(true)}
+                    onSelect={() => setHmSelected(true)}
+                    onDeselect={() => setHmSelected(false)}
                 />
 
                 {/*draggable Marker*/}
@@ -75,7 +75,8 @@ export default function App() {
 
                 <Marker
                     coordinate={coordinates.kartoffel}
-                    onPress={() => setKartoffelSelected(true)}
+                    onSelect={() => setKartoffelSelected(true)}
+                    onDeselect={() => setKartoffelSelected(false)}
                 >
                     <Image source={require("./assets/kartoffel.png")} style={{height: 35, resizeMode: 'contain'}} />
                 </Marker>
