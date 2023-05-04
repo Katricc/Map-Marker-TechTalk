@@ -5,17 +5,17 @@ type InfoCardProps = {
     image: ImageSourcePropType,
     title: string,
     description: string,
-    showButton?: boolean
+    buttonTitle?: string,
 };
 
-const InfoCard = ({ image, title, description, showButton }: InfoCardProps) => {
+const InfoCard = ({ image, title, description, buttonTitle }: InfoCardProps) => {
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={image} />
             <View style={styles.descContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>{description}</Text>
-                {showButton && <Button title={"ONLINE BESTELLEN"}></Button>}
+                {buttonTitle && <Button title={buttonTitle}></Button>}
             </View>
         </View>
     );
