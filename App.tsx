@@ -1,7 +1,9 @@
-import { Button, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, ImageSourcePropType, Text, View } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import React, { useState } from "react";
 import InfoCard from "./components/InfoCard";
+import { infoCards, initialRegion } from "./constants/constants";
+import { styles } from "./styles";
 
 interface InfoCardState {
     image: ImageSourcePropType,
@@ -10,20 +12,14 @@ interface InfoCardState {
     buttonTitle?: string,
 }
 
-const INITIAL_HM_LATITUDE = 48.15346478578679;
-const INITIAL_HM_LONGITUDE = 11.552735633537765;
-
-const initialRegion = {
-    latitude: INITIAL_HM_LATITUDE,
-    longitude: INITIAL_HM_LONGITUDE,
-    latitudeDelta: 0.008,
-    longitudeDelta: 0.008,
-};
-
 const coordinates = {
     hmMensa: {
         latitude: 48.153861655968925,
         longitude: 11.552529917268192,
+    },
+    hmRoterWuerfel: {
+        latitude: 48.15511112929416,
+        longitude: 11.55582507820804,
     },
     tramHaltestelle: {
         latitude: 48.154054356940144,
@@ -32,29 +28,10 @@ const coordinates = {
     kartoffel: {
         latitude: 48.15362643995874,
         longitude: 11.55443682687525,
-    },
-    hmRoterWuerfel: {
-        latitude: 48.15511112929416,
-        longitude: 11.55582507820804,
     }
 };
 
-const infoCards = {
-    kartoffel: {
-        image: require('./assets/kartoffel_essen.jpg'),
-        title: "Patatez&Kumpir",
-        description: "Dachauer Straße 149\n80335 München",
-        buttonTitle: "ONLINE BESTELLEN",
-    },
-    hmRoterWuerfel: {
-        image: require('./assets/dm_Lothstrasse64_Haupteingang_2011.jpg'),
-        title: "Hochschule München",
-        description: "Lothstraße 64\n80335 München",
-        buttonTitle: "",
-    },
-}
-
-export default function App() {
+const App = () => {
     const [dragCoord, setDragCoord] = useState(coordinates.hmMensa);
     const [selectedCard, setSelectedCard] = useState<InfoCardState | null>(null);
 
@@ -85,10 +62,9 @@ export default function App() {
 
                 {/*Custom Callout*/}
                 <Marker
-                    coordinate={coordinates.tramHaltestelle} pinColor="yellow" onSelect={() => console.log("SELECTED")}
-                    onPress={() => console.log("SELECTED2")}
+                    coordinate={coordinates.tramHaltestelle}
+                    pinColor="yellow"
                 >
-                    {/*"tooltip" needed for Android, otherwise Button is not clickable*/}
                     <Callout>
                         <Text>Tramhaltestelle</Text>
                         <Button title={"press me"} />
@@ -116,45 +92,4 @@ export default function App() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    calloutContainer: {
-        zIndex: 1000,
-        height: 100,
-        width: 100,
-        position: 'absolute',
-        pointerEvents: 'box-none',
-    },
-    callout: {
-        backgroundColor: 'white',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: 'transparent',
-        borderWidth: 1,
-    },
-    calloutTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    calloutDescription: {
-        fontSize: 12,
-        marginTop: 5,
-    },
-    calloutButtonContainer: {
-        marginTop: 10,
-    },
-    calloutButton: {
-        color: 'blue',
-        textDecorationLine: 'underline',
-    },
-    map: {
-        height: '100%',
-        width: '100%'
-    }
-});
+export default App;
