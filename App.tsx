@@ -32,7 +32,6 @@ const coordinates = {
 };
 
 const App = () => {
-    const [dragCoord, setDragCoord] = useState(coordinates.hmMensa);
     const [selectedCard, setSelectedCard] = useState<InfoCardState | null>(null);
 
     return (
@@ -54,9 +53,9 @@ const App = () => {
                     description="Ich bin ein draggable Marker"
                     draggable
                     pinColor="blue"
-                    coordinate={dragCoord}
+                    coordinate={coordinates.hmMensa}
                     onDragEnd={e => {
-                        setDragCoord(e.nativeEvent.coordinate);
+                        alert(`${e.nativeEvent.coordinate.longitude} ${e.nativeEvent.coordinate.latitude}`);
                     }}
                 />
 
