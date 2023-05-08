@@ -43,30 +43,13 @@ const App = () => {
             <MapView
                 style={styles.map}
                 initialRegion={initialRegion}
+                // onPress={() => setSelectedCard(null)}
             >
                 {/*Marker mit Titel und Beschreibung (Callout)*/}
                 <Marker
                     coordinate={coordinates.hmBib}
                     title="Bibliothek der Hochschule München"
                     description="Bibliothek"
-                />
-
-                {/*Marker mit HM Logo*/}
-                <Marker
-                    coordinate={coordinates.hmRoterWuerfel}
-                    image={require("./assets/Logo_Muenchen_Quadrat.png")}
-                    onSelect={() => setSelectedCard(infoCards.hmRoterWuerfel)}
-                    onDeselect={() => setSelectedCard(null)}
-                />
-
-                {/*draggable Marker*/}
-                <Marker
-                    draggable
-                    pinColor="blue"
-                    coordinate={coordinates.hmMensa}
-                    onDragEnd={e => {
-                        alert(`${e.nativeEvent.coordinate.longitude} ${e.nativeEvent.coordinate.latitude}`);
-                    }}
                 />
 
                 {/*Benutzerdefiniertes Callout*/}
@@ -80,12 +63,31 @@ const App = () => {
                     </Callout>
                 </Marker>
 
+                {/*Marker mit HM Logo*/}
+                <Marker
+                    coordinate={coordinates.hmRoterWuerfel}
+                    image={require("./assets/Logo_Muenchen_Quadrat.png")}
+                    onSelect={() => setSelectedCard(infoCards.hmRoterWuerfel)}
+                    onDeselect={() => setSelectedCard(null)}
+                    // onPress={() => setSelectedCard(infoCards.hmRoterWuerfel)}
+                />
+
+                {/*draggable Marker*/}
+                <Marker
+                    draggable
+                    pinColor="blue"
+                    coordinate={coordinates.hmMensa}
+                    onDragEnd={e => {
+                        alert(`${e.nativeEvent.coordinate.longitude} ${e.nativeEvent.coordinate.latitude}`);
+                    }}
+                />
+
                 {/*Marker mit Image als Child Component*/}
                 <Marker
                     coordinate={coordinates.kartoffel}
                     onSelect={() => setSelectedCard(infoCards.kartoffel)}
                     onDeselect={() => setSelectedCard(null)}
-                    onPress={() => setSelectedCard(infoCards.kartoffel)}
+                    // onPress={() => setSelectedCard(infoCards.kartoffel)}
                 >
                     <Image
                         source={require("./assets/kartoffel.png")}
